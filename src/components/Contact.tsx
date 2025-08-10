@@ -9,7 +9,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email Us',
-      content: 'hello@digitalspark.dev',
+      content: 'hello@ecofusion.dev',
       description: 'Send us an email anytime'
     },
     {
@@ -54,8 +54,8 @@ const Contact = () => {
           <div>
             <h3 className="text-2xl font-bold mb-8">Let's Talk</h3>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              We're here to help you bring your vision to life. Whether you have a specific project in mind 
-              or just want to explore possibilities, we'd love to hear from you.
+              We're here to help you bring your sustainable vision to life. Whether you have a specific eco-friendly project in mind 
+              or just want to explore green technology possibilities, we'd love to hear from you.
             </p>
 
             <div className="space-y-6">

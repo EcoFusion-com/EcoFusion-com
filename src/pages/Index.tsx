@@ -1,9 +1,15 @@
+import { lazy, Suspense } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import Services from '@/components/Services';
-import About from '@/components/About';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
+
+// Lazy load components below the fold
+const HowWeWork = lazy(() => import('@/components/HowWeWork'));
+const Services = lazy(() => import('@/components/Services'));
+const TechStack = lazy(() => import('@/components/TechStack'));
+const Differentiators = lazy(() => import('@/components/Differentiators'));
+const About = lazy(() => import('@/components/About'));
+const Contact = lazy(() => import('@/components/Contact'));
+const Footer = lazy(() => import('@/components/Footer'));
 
 const Index = () => {
   return (
@@ -11,11 +17,18 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <Services />
-        <About />
-        <Contact />
+        <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading...</div>}>
+          <HowWeWork />
+          <Services />
+          <TechStack />
+          <Differentiators />
+          <About />
+          <Contact />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={<div className="h-32 flex items-center justify-center">Loading...</div>}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };

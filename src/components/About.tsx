@@ -64,8 +64,8 @@ const About = () => {
             Building the <span className="gradient-text">Future</span> Together
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Founded in 2019, DigitalSpark has grown from a small startup to a trusted technology partner 
-            for businesses worldwide. We combine technical expertise with creative innovation.
+            Founded in 2019, Eco Fusion has grown from a small startup to a trusted technology partner 
+            for environmentally conscious businesses worldwide. We combine technical expertise with sustainable innovation.
           </p>
         </div>
 
@@ -75,12 +75,12 @@ const About = () => {
             <h3 className="text-3xl font-bold mb-6">Our Story</h3>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
               What started as a passion project between university friends has evolved into a full-service 
-              software development company. We've helped over 50 companies transform their ideas into 
-              successful digital products.
+              sustainable software development company. We've helped over 50 environmentally conscious companies transform their ideas into 
+              successful digital products while minimizing their carbon footprint.
             </p>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Our team combines deep technical knowledge with a genuine understanding of business needs, 
-              ensuring that every solution we build drives real value for our clients.
+              Our team combines deep technical knowledge with a genuine understanding of business needs and environmental impact, 
+              ensuring that every solution we build drives real value for our clients while protecting our planet.
             </p>
             <div className="grid grid-cols-2 gap-6">
               <div>

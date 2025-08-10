@@ -14,6 +14,8 @@ const Hero = () => {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
         }}
+        role="img"
+        aria-label="Sustainable technology background"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-background/90"></div>
       </div>
@@ -31,21 +33,21 @@ const Hero = () => {
           {/* Badge */}
           <div className="inline-flex items-center px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-8">
             <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse"></span>
-            Transforming Ideas into Digital Reality
+            Sustainable Technology for a Better Future
           </div>
 
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             We Build 
-            <span className="gradient-text"> Exceptional</span>
+            <span className="gradient-text"> Sustainable</span>
             <br />
-            Software Solutions
+            Digital Solutions
           </h1>
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-            From concept to deployment, we create cutting-edge applications that drive your business forward. 
-            Trusted by startups and enterprises worldwide.
+            From concept to deployment, we create eco-conscious applications that drive your business forward while protecting our planet. 
+            Trusted by environmentally conscious companies worldwide.
           </p>
 
           {/* CTA Buttons */}

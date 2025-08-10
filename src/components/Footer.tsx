@@ -35,18 +35,18 @@ const Footer = () => {
             <div className="space-y-6">
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">DS</span>
+                  <span className="text-white font-bold text-sm">EF</span>
                 </div>
-                <span className="text-xl font-bold gradient-text">DigitalSpark</span>
+                <span className="text-xl font-bold gradient-text">Eco Fusion</span>
               </div>
               <p className="text-muted-foreground">
-                Transforming ideas into exceptional digital solutions. 
-                Your trusted technology partner for innovation and growth.
+                Transforming ideas into sustainable digital solutions. 
+                Your trusted technology partner for eco-conscious innovation and growth.
               </p>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-sm">
                   <Mail className="w-4 h-4 text-primary" />
-                  <span>hello@digitalspark.dev</span>
+                  <span>hello@ecofusion.dev</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
                   <Phone className="w-4 h-4 text-primary" />
@@ -131,7 +131,7 @@ const Footer = () => {
         <div className="py-8 border-t border-border/50">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm text-muted-foreground">
-              © 2024 DigitalSpark. All rights reserved.
+              © 2024 Eco Fusion. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
