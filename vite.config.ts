@@ -8,6 +8,7 @@ export default defineConfig({
     host: "::",
     port: 8080,
   },
+  base: process.env.NODE_ENV === 'production' ? '/figma-to-digital-spark/' : '/',
   plugins: [react()],
   resolve: {
     alias: {
