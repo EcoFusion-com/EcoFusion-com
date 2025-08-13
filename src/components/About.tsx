@@ -35,7 +35,7 @@ const About = () => {
     {
       name: 'Abdullah',
       role: 'CTO & Lead Developer',
-      image: '/placeholder.svg',
+      image: '/abdullah.jpeg',
       experience: '3+ years'
     },
   ];

@@ -9,7 +9,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email Us',
-      content: 'hello@ecofusion.dev',
+      content: 'ecofusion.net@gmail.com',
       description: 'Send us an email anytime'
     },
     {
