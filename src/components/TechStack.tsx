@@ -14,6 +14,57 @@ import {
   Settings,
   MessageSquare
 } from 'lucide-react';
+// Import Simple Icons for brand logos
+import { 
+  SiTypescript, 
+  SiJavascript, 
+  SiPython, 
+  SiCplusplus, 
+  SiDart,
+  SiReact,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiExpress,
+  SiDjango,
+  SiFastapi,
+  SiFlask,
+  SiFlutter,
+  SiPostgresql,
+  SiMongodb,
+  SiNeo4J,
+  SiMysql,
+  SiFirebase,
+  SiSupabase,
+  SiAmazon,
+  SiGooglecloud,
+  SiVercel,
+  SiNetlify,
+  SiRender,
+  SiTailwindcss,
+  SiFramer,
+  SiStorybook,
+  SiVite,
+  SiGraphql,
+  SiSwagger,
+  SiPostman,
+  SiDocker,
+  SiGithubactions,
+  SiJenkins,
+  SiGitlab,
+  SiJest,
+  SiCypress,
+  SiMqtt
+} from 'react-icons/si';
+// Import additional icons from other react-icons libraries
+import { 
+  FaJava,
+  FaPlay,
+  FaMicrosoft
+} from 'react-icons/fa';
+import { 
+  TbWebhook,
+  TbPalette
+} from 'react-icons/tb';
 
 const TechStack = () => {
   const [activeTab, setActiveTab] = useState('languages');
@@ -24,12 +75,12 @@ const TechStack = () => {
       name: 'Programming Languages',
       icon: Code,
       technologies: [
-        { name: 'TypeScript', icon: '⚡' },
-        { name: 'JavaScript', icon: '🟨' },
-        { name: 'Python', icon: '🐍' },
-        { name: 'Java', icon: '☕' },
-        { name: 'C#', icon: '💎' },
-        { name: 'Go', icon: '🔵' }
+        { name: 'TypeScript', icon: SiTypescript },
+        { name: 'JavaScript', icon: SiJavascript },
+        { name: 'Python', icon: SiPython },
+        { name: 'Java', icon: FaJava },
+        { name: 'C++', icon: SiCplusplus },
+        { name: 'Dart', icon: SiDart }
       ]
     },
     {
@@ -37,12 +88,14 @@ const TechStack = () => {
       name: 'Frameworks',
       icon: Globe,
       technologies: [
-        { name: 'React', icon: '⚛️' },
-        { name: 'Next.js', icon: '▲' },
-        { name: 'Node.js', icon: '🟢' },
-        { name: 'Express', icon: '🚂' },
-        { name: 'Django', icon: '🎸' },
-        { name: 'FastAPI', icon: '⚡' }
+        { name: 'React', icon: SiReact },
+        { name: 'Next.js', icon: SiNextdotjs },
+        { name: 'Node.js', icon: SiNodedotjs },
+        { name: 'Express', icon: SiExpress },
+        { name: 'Django', icon: SiDjango },
+        { name: 'FastAPI', icon: SiFastapi },
+        { name: 'Flask', icon: SiFlask },
+        { name: 'Flutter', icon: SiFlutter }
       ]
     },
     {
@@ -50,12 +103,12 @@ const TechStack = () => {
       name: 'Database Management',
       icon: Database,
       technologies: [
-        { name: 'PostgreSQL', icon: '🐘' },
-        { name: 'MongoDB', icon: '🍃' },
-        { name: 'Redis', icon: '🔴' },
-        { name: 'MySQL', icon: '🐬' },
-        { name: 'Firebase', icon: '🔥' },
-        { name: 'Supabase', icon: '⚡' }
+        { name: 'PostgreSQL', icon: SiPostgresql },
+        { name: 'MongoDB', icon: SiMongodb },
+        { name: 'Neo4j', icon: SiNeo4J },
+        { name: 'MySQL', icon: SiMysql },
+        { name: 'Firebase', icon: SiFirebase },
+        { name: 'Supabase', icon: SiSupabase }
       ]
     },
     {
@@ -63,12 +116,12 @@ const TechStack = () => {
       name: 'Cloud Technologies',
       icon: Cloud,
       technologies: [
-        { name: 'AWS', icon: '☁️' },
-        { name: 'Azure', icon: '🔷' },
-        { name: 'Google Cloud', icon: '🌐' },
-        { name: 'Vercel', icon: '▲' },
-        { name: 'Netlify', icon: '🟢' },
-        { name: 'Heroku', icon: '💜' }
+        { name: 'AWS', icon: SiAmazon },
+        { name: 'Azure', icon: FaMicrosoft },
+        { name: 'Google Cloud', icon: SiGooglecloud },
+        { name: 'Vercel', icon: SiVercel },
+        { name: 'Netlify', icon: SiNetlify },
+        { name: 'Render', icon: SiRender }
       ]
     },
     {
@@ -76,12 +129,11 @@ const TechStack = () => {
       name: 'Front-end',
       icon: Monitor,
       technologies: [
-        { name: 'Tailwind CSS', icon: '🎨' },
-        { name: 'Material-UI', icon: '📱' },
-        { name: 'Chakra UI', icon: '⚡' },
-        { name: 'Framer Motion', icon: '🎬' },
-        { name: 'Storybook', icon: '📚' },
-        { name: 'Vite', icon: '⚡' }
+        { name: 'Tailwind CSS', icon: SiTailwindcss },
+        { name: 'Material-UI', icon: TbPalette },
+        { name: 'Framer Motion', icon: SiFramer },
+        { name: 'Storybook', icon: SiStorybook },
+        { name: 'Vite', icon: SiVite }
       ]
     },
     {
@@ -89,12 +141,11 @@ const TechStack = () => {
       name: 'Back-end',
       icon: Server,
       technologies: [
-        { name: 'GraphQL', icon: '🔷' },
-        { name: 'REST APIs', icon: '🌐' },
-        { name: 'WebSockets', icon: '🔌' },
-        { name: 'JWT', icon: '🔐' },
-        { name: 'OAuth', icon: '🔑' },
-        { name: 'gRPC', icon: '📡' }
+        { name: 'GraphQL', icon: SiGraphql },
+        { name: 'REST APIs', icon: MessageSquare },
+        { name: 'WebSockets', icon: MessageSquare },
+        { name: 'JWT', icon: Settings },
+        { name: 'OAuth', icon: Settings }
       ]
     },
     {
@@ -102,12 +153,8 @@ const TechStack = () => {
       name: 'Containerization',
       icon: Box,
       technologies: [
-        { name: 'Docker', icon: '🐳' },
-        { name: 'Kubernetes', icon: '⚓' },
-        { name: 'Docker Compose', icon: '📦' },
-        { name: 'Helm', icon: '⛵' },
-        { name: 'Podman', icon: '🟦' },
-        { name: 'Rancher', icon: '🐄' }
+        { name: 'Docker', icon: SiDocker },
+        { name: 'Docker Compose', icon: SiDocker }
       ]
     },
     {
@@ -115,12 +162,9 @@ const TechStack = () => {
       name: 'CI/CD',
       icon: GitBranch,
       technologies: [
-        { name: 'GitHub Actions', icon: '🐙' },
-        { name: 'Jenkins', icon: '🤖' },
-        { name: 'GitLab CI', icon: '🦊' },
-        { name: 'CircleCI', icon: '⭕' },
-        { name: 'Travis CI', icon: '🦎' },
-        { name: 'ArgoCD', icon: '🚢' }
+        { name: 'GitHub Actions', icon: SiGithubactions },
+        { name: 'Jenkins', icon: SiJenkins },
+        { name: 'GitLab CI', icon: SiGitlab }
       ]
     },
     {
@@ -128,25 +172,9 @@ const TechStack = () => {
       name: 'Testing',
       icon: TestTube,
       technologies: [
-        { name: 'Jest', icon: '🃏' },
-        { name: 'Cypress', icon: '🌲' },
-        { name: 'Playwright', icon: '🎭' },
-        { name: 'Vitest', icon: '⚡' },
-        { name: 'Testing Library', icon: '📚' },
-        { name: 'MSW', icon: '🦅' }
-      ]
-    },
-    {
-      id: 'devops',
-      name: 'DevOps Tools',
-      icon: Settings,
-      technologies: [
-        { name: 'Terraform', icon: '🏗️' },
-        { name: 'Ansible', icon: '🤖' },
-        { name: 'Prometheus', icon: '📊' },
-        { name: 'Grafana', icon: '📈' },
-        { name: 'ELK Stack', icon: '🦌' },
-        { name: 'Istio', icon: '🛡️' }
+        { name: 'Jest', icon: SiJest },
+        { name: 'Cypress', icon: SiCypress },
+        { name: 'Playwright', icon: FaPlay }
       ]
     },
     {
@@ -154,15 +182,22 @@ const TechStack = () => {
       name: 'APIs/REST',
       icon: MessageSquare,
       technologies: [
-        { name: 'MQTT', icon: '📡' },
-        { name: 'GraphQL', icon: '🔷' },
-        { name: 'Webhooks', icon: '🎣' },
-        { name: 'gRPC', icon: '📡' },
-        { name: 'Swagger', icon: '📋' },
-        { name: 'Postman', icon: '📮' }
+        { name: 'MQTT', icon: SiMqtt },
+        { name: 'GraphQL', icon: SiGraphql },
+        { name: 'Webhooks', icon: TbWebhook },
+        { name: 'Swagger', icon: SiSwagger },
+        { name: 'Postman', icon: SiPostman }
       ]
     }
   ];
+
+  // Function to calculate circular positions
+  const getCircularPosition = (index: number, total: number, radius: number = 200) => {
+    const angle = (index / total) * 2 * Math.PI - Math.PI / 2; // Start from top
+    const x = Math.cos(angle) * radius;
+    const y = Math.sin(angle) * radius;
+    return { x, y };
+  };
 
   return (
     <section id="tech-stack" className="section-padding section--alternate-1">
@@ -198,22 +233,48 @@ const TechStack = () => {
             </TabsList>
           </div>
 
-          {/* Tech Cards */}
+          {/* Tech Cards - Circular Cluster Layout */}
           {categories.map((category) => (
             <TabsContent key={category.id} value={category.id} className="mt-0">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                {category.technologies.map((tech, index) => (
-                  <Card key={index} className="card-elegant text-center group hover:shadow-glow transition-all duration-300">
-                    <CardContent className="p-4">
-                      <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300" aria-hidden="true">
-                        {tech.icon}
+              <div className="flex justify-center items-center min-h-[600px] relative">
+                <div className="relative w-[500px] h-[500px] flex items-center justify-center">
+                  {/* Center category indicator */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-gradient-primary rounded-full p-6 shadow-lg">
+                      <category.icon className="w-8 h-8 text-white" aria-hidden="true" />
+                    </div>
+                  </div>
+                  
+                  {/* Technology icons in circular pattern */}
+                  {category.technologies.map((tech, index) => {
+                    const IconComponent = tech.icon;
+                    const position = getCircularPosition(index, category.technologies.length, 180);
+                    
+                    return (
+                      <div
+                        key={index}
+                        className="absolute transform -translate-x-1/2 -translate-y-1/2 group"
+                        style={{
+                          left: `calc(50% + ${position.x}px)`,
+                          top: `calc(50% + ${position.y}px)`,
+                        }}
+                      >
+                        <div className="relative">
+                          {/* Small round card */}
+                          <div className="w-16 h-16 bg-card border border-border rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/10">
+                            <IconComponent className="w-8 h-8 text-foreground group-hover:text-primary transition-colors duration-300" />
+                          </div>
+                          
+                          {/* Tooltip */}
+                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-background border border-border rounded-lg text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-10">
+                            {tech.name}
+                            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-border"></div>
+                          </div>
+                        </div>
                       </div>
-                      <h3 className="font-semibold text-sm group-hover:text-primary transition-colors duration-300">
-                        {tech.name}
-                      </h3>
-                    </CardContent>
-                  </Card>
-                ))}
+                    );
+                  })}
+                </div>
               </div>
             </TabsContent>
           ))}
