@@ -62,6 +62,17 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Brand color tokens
+				brand: {
+					bg: 'var(--bg)',
+					surface: 'var(--surface)',
+					text: 'var(--text)',
+					muted: 'var(--muted)',
+					soft: 'var(--soft)',
+					primary: 'var(--primary)',
+					accent: 'var(--accent)',
+					gold: 'var(--gold)'
 				}
 			},
 			borderRadius: {

@@ -4,7 +4,7 @@ import heroBg from '@/assets/hero-bg.jpg';
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden section--alternate-1">
       {/* Background Image */}
       <div 
         className="absolute inset-0 z-0"
@@ -17,14 +17,14 @@ const Hero = () => {
         role="img"
         aria-label="Sustainable technology background"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-background/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/95"></div>
       </div>
 
       {/* Floating Elements */}
       <div className="absolute inset-0 z-10">
         <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-primary rounded-full opacity-20 animate-pulse"></div>
-        <div className="absolute top-1/2 right-20 w-16 h-16 bg-accent/20 rounded-full animate-pulse delay-1000"></div>
-        <div className="absolute bottom-32 left-1/4 w-24 h-24 bg-primary/10 rounded-full animate-pulse delay-500"></div>
+        <div className="absolute top-1/2 right-20 w-16 h-16 bg-secondary/20 rounded-full animate-pulse delay-1000"></div>
+        <div className="absolute bottom-32 left-1/4 w-24 h-24 bg-accent/10 rounded-full animate-pulse delay-500"></div>
       </div>
 
       {/* Content */}

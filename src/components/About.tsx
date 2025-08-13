@@ -27,34 +27,22 @@ const About = () => {
 
   const team = [
     {
-      name: 'Alex Johnson',
-      role: 'CEO & Founder',
+      name: 'Hammad Ali',
+      role: 'CEO & UI/UX Designer',
       image: '/placeholder.svg',
-      experience: '10+ years'
+      experience: '3+ years'
     },
     {
-      name: 'Sarah Chen',
-      role: 'CTO',
+      name: 'Abdullah',
+      role: 'CTO & Lead Developer',
       image: '/placeholder.svg',
-      experience: '8+ years'
+      experience: '3+ years'
     },
-    {
-      name: 'Michael Rodriguez',
-      role: 'Lead Developer',
-      image: '/placeholder.svg',
-      experience: '7+ years'
-    },
-    {
-      name: 'Emily Davis',
-      role: 'UI/UX Designer',
-      image: '/placeholder.svg',
-      experience: '6+ years'
-    }
   ];
 
   return (
-    <section id="about" className="section-padding">
-      <div className="container mx-auto">
+    <section id="about" className="section-padding section--alternate-2">
+      <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-6">
@@ -64,7 +52,7 @@ const About = () => {
             Building the <span className="gradient-text">Future</span> Together
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Founded in 2019, Eco Fusion has grown from a small startup to a trusted technology partner 
+            Founded in 2022, Eco Fusion has grown from a small startup to a trusted technology partner 
             for environmentally conscious businesses worldwide. We combine technical expertise with sustainable innovation.
           </p>
         </div>
@@ -97,10 +85,10 @@ const About = () => {
           <div className="relative">
             <div className="bg-gradient-card rounded-3xl p-8 glow-on-hover">
               <div className="grid grid-cols-2 gap-4">
-                <div className="h-32 bg-gradient-primary rounded-2xl opacity-20"></div>
-                <div className="h-32 bg-accent/20 rounded-2xl"></div>
-                <div className="h-32 bg-accent/20 rounded-2xl"></div>
-                <div className="h-32 bg-gradient-primary rounded-2xl opacity-20"></div>
+                <div className="h-32 bg-gradient-primary rounded-2xl opacity-20" aria-hidden="true"></div>
+                <div className="h-32 bg-secondary/20 rounded-2xl" aria-hidden="true"></div>
+                <div className="h-32 bg-secondary/20 rounded-2xl" aria-hidden="true"></div>
+                <div className="h-32 bg-gradient-primary rounded-2xl opacity-20" aria-hidden="true"></div>
               </div>
             </div>
           </div>
@@ -114,7 +102,7 @@ const About = () => {
               <Card key={index} className="card-elegant text-center group">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-center w-16 h-16 bg-gradient-primary rounded-2xl mb-4 mx-auto group-hover:scale-110 transition-transform duration-300">
-                    <value.icon className="w-8 h-8 text-white" />
+                    <value.icon className="w-8 h-8 text-white" aria-hidden="true" />
                   </div>
                   <h4 className="text-xl font-bold mb-3">{value.title}</h4>
                   <p className="text-muted-foreground">{value.description}</p>
@@ -131,7 +119,7 @@ const About = () => {
             {team.map((member, index) => (
               <Card key={index} className="card-elegant text-center group">
                 <CardContent className="p-6">
-                  <div className="w-24 h-24 bg-gradient-primary rounded-full mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"></div>
+                  <div className="w-24 h-24 bg-gradient-primary rounded-full mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></div>
                   <h4 className="text-xl font-bold mb-2">{member.name}</h4>
                   <p className="text-primary font-medium mb-1">{member.role}</p>
                   <p className="text-sm text-muted-foreground">{member.experience}</p>

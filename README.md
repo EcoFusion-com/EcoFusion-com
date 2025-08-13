@@ -1,6 +1,6 @@
-# Figma to Digital Spark
+# Eco Fusion - Sustainable Technology Solutions
 
-A modern React application built with Vite, TypeScript, and shadcn-ui components.
+A modern React application built with Vite, TypeScript, and shadcn-ui components for Eco Fusion's sustainable technology services.
 
 ## Getting Started
 
@@ -14,7 +14,7 @@ A modern React application built with Vite, TypeScript, and shadcn-ui components
 1. Clone the repository:
 ```bash
 git clone <YOUR_REPOSITORY_URL>
-cd figma-to-digital-spark
+cd eco-fusion-website
 ```
 
 2. Install dependencies:

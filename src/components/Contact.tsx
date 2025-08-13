@@ -33,8 +33,8 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="section-padding bg-muted/30">
-      <div className="container mx-auto">
+    <section id="contact" className="section-padding section--alternate-1">
+      <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-6">
@@ -62,7 +62,7 @@ const Contact = () => {
               {contactInfo.map((info, index) => (
                 <div key={index} className="flex items-start space-x-4">
                   <div className="flex items-center justify-center w-12 h-12 bg-gradient-primary rounded-xl">
-                    <info.icon className="w-6 h-6 text-white" />
+                    <info.icon className="w-6 h-6 text-white" aria-hidden="true" />
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">{info.title}</h4>
@@ -89,7 +89,7 @@ const Contact = () => {
           {/* Contact Form */}
           <Card className="card-elegant">
             <CardContent className="p-8">
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="firstName" className="block text-sm font-medium mb-2">
@@ -98,7 +98,9 @@ const Contact = () => {
                     <Input 
                       id="firstName" 
                       placeholder="John" 
-                      className="w-full"
+                      className="w-full focus-ring"
+                      required
+                      aria-describedby="firstName-help"
                     />
                   </div>
                   <div>
@@ -108,7 +110,9 @@ const Contact = () => {
                     <Input 
                       id="lastName" 
                       placeholder="Doe" 
-                      className="w-full"
+                      className="w-full focus-ring"
+                      required
+                      aria-describedby="lastName-help"
                     />
                   </div>
                 </div>
@@ -121,7 +125,9 @@ const Contact = () => {
                     id="email" 
                     type="email" 
                     placeholder="john@example.com" 
-                    className="w-full"
+                    className="w-full focus-ring"
+                    required
+                    aria-describedby="email-help"
                   />
                 </div>
 
@@ -132,7 +138,8 @@ const Contact = () => {
                   <Input 
                     id="company" 
                     placeholder="Your Company" 
-                    className="w-full"
+                    className="w-full focus-ring"
+                    aria-describedby="company-help"
                   />
                 </div>
 
@@ -142,7 +149,9 @@ const Contact = () => {
                   </label>
                   <select 
                     id="projectType" 
-                    className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground"
+                    className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground focus-ring transition-colors duration-200"
+                    required
+                    aria-describedby="projectType-help"
                   >
                     <option value="">Select a service</option>
                     <option value="web">Web Development</option>
@@ -161,11 +170,13 @@ const Contact = () => {
                     id="message" 
                     placeholder="Tell us about your project..." 
                     rows={5}
-                    className="w-full"
+                    className="w-full focus-ring"
+                    required
+                    aria-describedby="message-help"
                   />
                 </div>
 
-                <Button className="btn-hero w-full">
+                <Button type="submit" className="btn-hero w-full" aria-label="Send contact form message">
                   Send Message
                 </Button>
 

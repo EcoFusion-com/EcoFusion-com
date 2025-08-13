@@ -165,8 +165,8 @@ const TechStack = () => {
   ];
 
   return (
-    <section className="section-padding">
-      <div className="container mx-auto">
+    <section id="tech-stack" className="section-padding section--alternate-1">
+      <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-6">
@@ -184,14 +184,14 @@ const TechStack = () => {
         {/* Tech Stack Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <div className="flex justify-center mb-12">
-            <TabsList className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 p-1 bg-muted/50 rounded-xl">
+            <TabsList className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 p-1 bg-card rounded-xl">
               {categories.map((category) => (
                 <TabsTrigger
                   key={category.id}
                   value={category.id}
                   className="data-[state=active]:bg-primary data-[state=active]:text-white rounded-lg px-3 py-2 text-xs font-medium transition-all duration-300"
                 >
-                  <category.icon className="w-4 h-4 mr-2" />
+                  <category.icon className="w-4 h-4 mr-2" aria-hidden="true" />
                   <span className="hidden sm:inline">{category.name}</span>
                 </TabsTrigger>
               ))}
@@ -205,7 +205,7 @@ const TechStack = () => {
                 {category.technologies.map((tech, index) => (
                   <Card key={index} className="card-elegant text-center group hover:shadow-glow transition-all duration-300">
                     <CardContent className="p-4">
-                      <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                      <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300" aria-hidden="true">
                         {tech.icon}
                       </div>
                       <h3 className="font-semibold text-sm group-hover:text-primary transition-colors duration-300">
@@ -224,7 +224,7 @@ const TechStack = () => {
           <p className="text-lg text-muted-foreground mb-6">
             Need a specific technology not listed? We're always learning and adapting.
           </p>
-          <button className="btn-hero">
+          <button className="btn-hero" aria-label="Discuss your technology needs with our team">
             Discuss Your Tech Needs
           </button>
         </div>

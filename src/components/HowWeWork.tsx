@@ -1,36 +1,20 @@
-import { Search, Palette, Code, Rocket } from 'lucide-react';
+import { Search, Palette, Code, Rocket, Trophy } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { useState } from 'react';
 
 const HowWeWork = () => {
   const steps = [
-    {
-      icon: Search,
-      title: 'Discover',
-      description: 'Quick audit + feasibility review',
-      details: 'We start by understanding your vision, conducting a thorough analysis of requirements, and assessing technical feasibility to ensure your project is set up for success.'
-    },
-    {
-      icon: Palette,
-      title: 'Design',
-      description: 'Scope, metrics, and delivery plan',
-      details: 'We create detailed wireframes, establish clear success metrics, and develop a comprehensive project roadmap with realistic timelines and milestones.'
-    },
-    {
-      icon: Code,
-      title: 'Build',
-      description: 'Sprint development with weekly demos',
-      details: 'Using agile methodology, we build your solution in iterative sprints with regular demos and feedback sessions to ensure we\'re always aligned with your vision.'
-    },
-    {
-      icon: Rocket,
-      title: 'Ship',
-      description: 'Deploy, monitor, and iterate',
-      details: 'We deploy your solution with comprehensive monitoring, provide ongoing support, and continuously iterate based on user feedback and performance metrics.'
-    }
+    { icon: Search, title: 'Discover', description: 'Quick audit + feasibility review', details: 'We start by understanding your vision, conducting a thorough analysis...' },
+    { icon: Palette, title: 'Design', description: 'Scope, metrics, and delivery plan', details: 'We create detailed wireframes, establish clear success metrics...' },
+    { icon: Code, title: 'Build', description: 'Sprint development with weekly demos', details: 'Using agile methodology, we build your solution in iterative sprints...' },
+    { icon: Rocket, title: 'Ship', description: 'Deploy, monitor, and iterate', details: 'We deploy your solution with monitoring, provide ongoing support...' },
+    { icon: Trophy, title: 'Success', description: 'Celebrate and scale', details: 'Your project goes live successfully — now we focus on scaling...' }
   ];
 
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
-    <section className="section-padding bg-muted/30">
+    <section id="how-we-work" className="section-padding section--alternate-2">
       <div className="container mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -41,63 +25,101 @@ const HowWeWork = () => {
             How We <span className="gradient-text">Work</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Our proven development process ensures transparency, quality, and timely delivery. 
-            We work closely with you at every step to bring your vision to life.
+            Our proven development process ensures transparency, quality, and timely delivery.
           </p>
         </div>
 
-        {/* Process Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((step, index) => (
-            <Card key={index} className="card-elegant text-center group relative overflow-hidden">
-              {/* Step Number */}
-              <div className="absolute top-4 right-4 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-sm">
-                {index + 1}
-              </div>
-              
-              <CardContent className="p-6">
-                {/* Icon */}
-                <div className="flex items-center justify-center w-16 h-16 bg-gradient-primary rounded-2xl mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
-                  <step.icon className="w-8 h-8 text-white" />
-                </div>
+        {/* Timeline */}
+        <div className="relative">
+          {/* Center line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary/30" />
 
-                {/* Content */}
-                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
-                  {step.title}
-                </h3>
-                <p className="text-primary font-medium mb-4">
-                  {step.description}
-                </p>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {step.details}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Process Flow Indicator */}
-        <div className="hidden lg:flex items-center justify-center mt-12">
-          <div className="flex items-center space-x-4">
-            {steps.map((_, index) => (
-              <div key={index} className="flex items-center">
-                <div className="w-3 h-3 bg-primary rounded-full"></div>
-                {index < steps.length - 1 && (
-                  <div className="w-16 h-0.5 bg-primary/30 mx-2"></div>
+          <div className="space-y-12">
+            {steps.map((step, index) => (
+              <div key={index} className="grid grid-cols-9 items-center">
+                {/* Left side */}
+                {index % 2 === 0 ? (
+                  <>
+                    <div className="col-span-4 flex justify-end">
+                      <Card
+                        className="max-w-md transform transition duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+                        onMouseEnter={() => setHoveredIndex(index)}
+                        onMouseLeave={() => setHoveredIndex(null)}
+                      >
+                        <CardContent className="p-6">
+                          <div className="flex items-center gap-4">
+                            <div className="flex items-center justify-center w-14 h-14 bg-gradient-primary rounded-xl">
+                              <step.icon className="w-8 h-8 text-white" />
+                            </div>
+                            <div>
+                              <h3 className="text-lg font-bold">{step.title}</h3>
+                              <p className="text-primary font-medium">{step.description}</p>
+                            </div>
+                          </div>
+                          <div
+                            className={`mt-4 text-muted-foreground text-sm leading-relaxed transition-all duration-300 ${
+                              hoveredIndex === index ? 'opacity-100 max-h-40' : 'opacity-0 max-h-0 overflow-hidden'
+                            }`}
+                          >
+                            {step.details}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                    {/* Dot */}
+                    <div className="col-span-1 flex justify-center relative">
+                      <div className="w-6 h-6 bg-primary rounded-full z-10" />
+                    </div>
+                    {/* Empty Right */}
+                    <div className="col-span-4" />
+                  </>
+                ) : (
+                  <>
+                    <div className="col-span-4" />
+                    {/* Dot */}
+                    <div className="col-span-1 flex justify-center relative">
+                      <div className="w-6 h-6 bg-primary rounded-full z-10" />
+                    </div>
+                    {/* Right side */}
+                    <div className="col-span-4 flex justify-start">
+                      <Card
+                        className="max-w-md transform transition duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+                        onMouseEnter={() => setHoveredIndex(index)}
+                        onMouseLeave={() => setHoveredIndex(null)}
+                      >
+                        <CardContent className="p-6">
+                          <div className="flex items-center gap-4">
+                            <div className="flex items-center justify-center w-14 h-14 bg-gradient-primary rounded-xl">
+                              <step.icon className="w-8 h-8 text-white" />
+                            </div>
+                            <div>
+                              <h3 className="text-lg font-bold">{step.title}</h3>
+                              <p className="text-primary font-medium">{step.description}</p>
+                            </div>
+                          </div>
+                          <div
+                            className={`mt-4 text-muted-foreground text-sm leading-relaxed transition-all duration-300 ${
+                              hoveredIndex === index ? 'opacity-100 max-h-40' : 'opacity-0 max-h-0 overflow-hidden'
+                            }`}
+                          >
+                            {step.details}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </>
                 )}
               </div>
             ))}
           </div>
         </div>
 
-        {/* Call to Action */}
+        {/* CTA */}
         <div className="text-center mt-16">
           <p className="text-lg text-muted-foreground mb-6">
             Ready to start your project? Let's begin with a discovery session.
           </p>
-          <button className="btn-hero">
-            Start Your Project
-          </button>
+          <button className="btn-hero">Start Your Project</button>
         </div>
       </div>
     </section>

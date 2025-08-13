@@ -42,8 +42,8 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="section-padding bg-muted/30">
-      <div className="container mx-auto">
+    <section id="services" className="section-padding section--alternate-1">
+      <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-6">
@@ -62,10 +62,10 @@ const Services = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <Card key={index} className="card-elegant glow-on-hover group h-full">
-              <CardContent className="p-0">
+              <CardContent className="p-6">
                 {/* Icon */}
                 <div className="flex items-center justify-center w-16 h-16 bg-gradient-primary rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="w-8 h-8 text-white" />
+                  <service.icon className="w-8 h-8 text-white" aria-hidden="true" />
                 </div>
 
                 {/* Content */}
@@ -77,10 +77,10 @@ const Services = () => {
                 </p>
 
                 {/* Features */}
-                <ul className="space-y-2">
+                <ul className="space-y-2" role="list">
                   {service.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-center text-sm text-muted-foreground">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3"></div>
+                      <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3" aria-hidden="true"></div>
                       {feature}
                     </li>
                   ))}
@@ -95,7 +95,7 @@ const Services = () => {
           <p className="text-lg text-muted-foreground mb-6">
             Ready to discuss your project? Let's build something amazing together.
           </p>
-          <button className="btn-hero">
+          <button className="btn-hero" aria-label="Get free consultation for your project">
             Get Free Consultation
           </button>
         </div>

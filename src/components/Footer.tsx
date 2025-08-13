@@ -34,9 +34,12 @@ const Footer = () => {
             {/* Company Info */}
             <div className="space-y-6">
               <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">EF</span>
-                </div>
+                <img 
+                  src="/Black and Grey Clean Modern Minimalist Creative Technology Logo (2).png" 
+                  alt="Eco Fusion Logo" 
+                  className="w-8 h-8 object-contain"
+                  aria-label="Eco Fusion Logo"
+                />
                 <span className="text-xl font-bold gradient-text">Eco Fusion</span>
               </div>
               <p className="text-muted-foreground">
@@ -45,15 +48,15 @@ const Footer = () => {
               </p>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-sm">
-                  <Mail className="w-4 h-4 text-primary" />
+                  <Mail className="w-4 h-4 text-primary" aria-hidden="true" />
                   <span>hello@ecofusion.dev</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
-                  <Phone className="w-4 h-4 text-primary" />
+                  <Phone className="w-4 h-4 text-primary" aria-hidden="true" />
                   <span>+1 (555) 123-4567</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
-                  <MapPin className="w-4 h-4 text-primary" />
+                  <MapPin className="w-4 h-4 text-primary" aria-hidden="true" />
                   <span>123 Tech Street, Silicon Valley</span>
                 </div>
               </div>
@@ -62,12 +65,12 @@ const Footer = () => {
             {/* Services */}
             <div>
               <h3 className="text-lg font-semibold mb-6">Services</h3>
-              <ul className="space-y-3">
+              <ul className="space-y-3" role="list">
                 {services.map((service, index) => (
                   <li key={index}>
                     <a 
                       href="#" 
-                      className="text-muted-foreground hover:text-primary transition-colors duration-300"
+                      className="text-muted-foreground hover:text-primary transition-colors duration-300 focus-ring rounded-md px-1 py-1"
                     >
                       {service}
                     </a>
@@ -79,12 +82,12 @@ const Footer = () => {
             {/* Company */}
             <div>
               <h3 className="text-lg font-semibold mb-6">Company</h3>
-              <ul className="space-y-3">
+              <ul className="space-y-3" role="list">
                 {company.map((item, index) => (
                   <li key={index}>
                     <a 
                       href="#" 
-                      className="text-muted-foreground hover:text-primary transition-colors duration-300"
+                      className="text-muted-foreground hover:text-primary transition-colors duration-300 focus-ring rounded-md px-1 py-1"
                     >
                       {item}
                     </a>
@@ -103,9 +106,10 @@ const Footer = () => {
                 <input 
                   type="email" 
                   placeholder="Enter your email" 
-                  className="w-full px-4 py-3 border border-input rounded-lg bg-background text-foreground focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
+                  className="w-full px-4 py-3 border border-input rounded-lg bg-background text-foreground focus-ring transition-colors duration-200"
+                  aria-label="Email address for newsletter subscription"
                 />
-                <button className="btn-hero w-full">
+                <button className="btn-hero w-full" aria-label="Subscribe to newsletter">
                   Subscribe
                 </button>
               </div>
@@ -117,9 +121,9 @@ const Footer = () => {
                     key={index}
                     href={social.href}
                     aria-label={social.label}
-                    className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 group"
+                    className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 group focus-ring"
                   >
-                    <social.icon className="w-5 h-5" />
+                    <social.icon className="w-5 h-5" aria-hidden="true" />
                   </a>
                 ))}
               </div>
@@ -134,13 +138,13 @@ const Footer = () => {
               © 2024 Eco Fusion. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors focus-ring rounded-md px-1 py-1">
                 Privacy Policy
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors focus-ring rounded-md px-1 py-1">
                 Terms of Service
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors focus-ring rounded-md px-1 py-1">
                 Cookie Policy
               </a>
             </div>
