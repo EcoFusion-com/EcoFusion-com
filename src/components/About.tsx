@@ -1,5 +1,7 @@
 import { Users, Award, Target, Heart } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import hammadImage from '@/assets/hammad.jpeg';
+import abdullahImage from '@/assets/abdullah.jpeg';
 
 const About = () => {
   const values = [
@@ -29,13 +31,13 @@ const About = () => {
     {
       name: 'Hammad Ali',
       role: 'CEO & UI/UX Designer',
-      image: '/placeholder.svg',
+      image: hammadImage,
       experience: '3+ years'
     },
     {
       name: 'Abdullah',
       role: 'CTO & Lead Developer',
-      image: '/abdullah.jpeg',
+      image: abdullahImage,
       experience: '3+ years'
     },
   ];
@@ -115,17 +117,25 @@ const About = () => {
         {/* Team */}
         <div>
           <h3 className="text-3xl font-bold text-center mb-12">Meet Our Team</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <Card key={index} className="card-elegant text-center group">
-                <CardContent className="p-6">
-                  <div className="w-24 h-24 bg-gradient-primary rounded-full mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></div>
-                  <h4 className="text-xl font-bold mb-2">{member.name}</h4>
-                  <p className="text-primary font-medium mb-1">{member.role}</p>
-                  <p className="text-sm text-muted-foreground">{member.experience}</p>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="flex justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl">
+              {team.map((member, index) => (
+                <Card key={index} className="card-elegant text-center group">
+                  <CardContent className="p-6">
+                    <div className="w-24 h-24 rounded-full mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
+                      <img 
+                        src={member.image} 
+                        alt={`${member.name} - ${member.role}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h4 className="text-xl font-bold mb-2">{member.name}</h4>
+                    <p className="text-primary font-medium mb-1">{member.role}</p>
+                    <p className="text-sm text-muted-foreground">{member.experience}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </div>
