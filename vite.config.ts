@@ -12,7 +12,7 @@ export default defineConfig(({ command, mode }) => {
       host: "::",
       port: 8080,
     },
-    base: isProduction && !isPreview ? '/figma-to-digital-spark/' : '/',
+    base: isProduction && !isPreview ? '/Eco-Fusion/' : '/',
     plugins: [react()],
     resolve: {
       alias: {
