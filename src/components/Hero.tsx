@@ -1,8 +1,20 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Play } from 'lucide-react';
 import heroBg from '@/assets/hero-bg.jpg';
+import { useChatbotContext } from '@/contexts/ChatbotContext';
 
 const Hero = () => {
+  const { openChat } = useChatbotContext();
+
+  const handleStartProject = () => {
+    openChat();
+  };
+
+  const handleWatchStory = () => {
+    // TODO: Implement video modal or redirect to company story
+    console.log('Watch our story clicked');
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden section--alternate-1">
       {/* Background Image */}
@@ -52,11 +64,11 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-            <Button className="btn-hero group">
+            <Button className="btn-hero group" onClick={handleStartProject}>
               Start Your Project
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button variant="outline" className="btn-hero-outline group">
+            <Button variant="outline" className="btn-hero-outline group" onClick={handleWatchStory}>
               <Play className="mr-2 w-5 h-5" />
               Watch Our Story
             </Button>

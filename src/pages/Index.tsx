@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import { ChatbotWidget } from '@/components/ChatbotWidget';
 
 // Lazy load components below the fold
 const HowWeWork = lazy(() => import('@/components/HowWeWork'));
@@ -29,6 +30,9 @@ const Index = () => {
       <Suspense fallback={<div className="h-32 flex items-center justify-center">Loading...</div>}>
         <Footer />
       </Suspense>
+      
+      {/* Chatbot Widget - Available on all pages */}
+      <ChatbotWidget />
     </div>
   );
 };

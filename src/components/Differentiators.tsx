@@ -1,5 +1,6 @@
 import { Eye, Target, Zap, Headphones } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { useChatbotContext } from '@/contexts/ChatbotContext';
 
 const Differentiators = () => {
   const differentiators = [
@@ -28,6 +29,8 @@ const Differentiators = () => {
       details: 'Our relationship doesn\'t end at launch. We provide ongoing support, maintenance, and continuous improvement to ensure your solution evolves with your business.'
     }
   ];
+
+  const { openChat } = useChatbotContext();
 
   return (
     <section className="section-padding section--alternate-2">
@@ -96,7 +99,7 @@ const Differentiators = () => {
           <p className="text-lg text-muted-foreground mb-6">
             Ready to experience the difference? Let's discuss your project.
           </p>
-          <button className="btn-hero" aria-label="Start your project with Eco Fusion">
+          <button className="btn-hero" aria-label="Start your project with Eco Fusion" onClick={openChat}>
             Start Your Project
           </button>
         </div>

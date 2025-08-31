@@ -9,7 +9,10 @@
     "build:dev": "vite build --mode development",
     "build:preview": "vite build --mode preview",
     "lint": "eslint . --max-warnings 10",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "setup-chatbot": "node scripts/setup-chatbot.js",
+    "server": "node ./dist/server/index.js",
+    "server:dev": "tsx watch ./server/index.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -44,11 +47,15 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
+    "cors": "^2.8.5",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.6.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.462.0",
     "next-themes": "^0.3.0",
+    "node-mailjet": "^6.0.9",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
@@ -66,6 +73,8 @@
   "devDependencies": {
     "@eslint/js": "^9.32.0",
     "@tailwindcss/typography": "^0.5.16",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
     "@types/node": "^22.16.5",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",

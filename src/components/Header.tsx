@@ -25,16 +25,19 @@ const Header = () => {
     <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <img 
-              src="/Black and Grey Clean Modern Minimalist Creative Technology Logo (2).png" 
-              alt="Eco Fusion Logo" 
-              className="w-8 h-8 object-contain"
-              aria-label="Eco Fusion Logo"
-            />
-            <span className="text-xl font-bold gradient-text">Eco Fusion</span>
-          </div>
+                     {/* Logo */}
+           <div className="flex items-center space-x-2">
+             <img 
+               src="/Black and Grey Clean Modern Minimalist Creative Technology Logo (2).png" 
+               alt="Eco Fusion Logo" 
+               className="w-8 h-8 object-contain rounded-lg"
+               aria-label="Eco Fusion Logo"
+               onError={(e) => {
+                 e.currentTarget.style.display = 'none';
+               }}
+             />
+             <span className="text-xl font-bold gradient-text">Eco Fusion</span>
+           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8" aria-label="Main navigation">

@@ -1,14 +1,29 @@
 import { Mail, Phone, MapPin, Github, Twitter, Linkedin } from 'lucide-react';
+import { useState } from 'react';
+import { useChatbotContext } from '@/contexts/ChatbotContext';
 
 const Footer = () => {
-  const services = [
-    'Web Development',
-    'Mobile Apps',
-    'Custom Software',
-    'Cloud Solutions',
-    'UI/UX Design',
-    'Consulting'
-  ];
+  const [email, setEmail] = useState('');
+  const { openChat } = useChatbotContext();
+
+  const handleNewsletterSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim()) {
+      // TODO: Implement newsletter subscription
+      console.log('Newsletter subscription for:', email);
+      setEmail('');
+      // Open chat to confirm subscription
+      openChat();
+    }
+  };
+     const services = [
+     'AI & Automation',
+     'IoT Solutions',
+     'Full-Stack Development',
+     'Cloud Solutions',
+     'Cybersecurity',
+     'Technical Support'
+   ];
 
   const company = [
     'About Us',
@@ -32,16 +47,19 @@ const Footer = () => {
         <div className="py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {/* Company Info */}
-            <div className="space-y-6">
-              <div className="flex items-center space-x-2">
-                <img 
-                  src="/Black and Grey Clean Modern Minimalist Creative Technology Logo (2).png" 
-                  alt="Eco Fusion Logo" 
-                  className="w-8 h-8 object-contain"
-                  aria-label="Eco Fusion Logo"
-                />
-                <span className="text-xl font-bold gradient-text">Eco Fusion</span>
-              </div>
+                         <div className="space-y-6">
+               <div className="flex items-center space-x-2">
+                 <img 
+                   src="/Black and Grey Clean Modern Minimalist Creative Technology Logo (2).png" 
+                   alt="Eco Fusion Logo" 
+                   className="w-8 h-8 object-contain rounded-lg"
+                   aria-label="Eco Fusion Logo"
+                   onError={(e) => {
+                     e.currentTarget.style.display = 'none';
+                   }}
+                 />
+                 <span className="text-xl font-bold gradient-text">Eco Fusion</span>
+               </div>
               <p className="text-muted-foreground">
                 Transforming ideas into sustainable digital solutions. 
                 Your trusted technology partner for eco-conscious innovation and growth.
@@ -53,11 +71,11 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
                   <Phone className="w-4 h-4 text-primary" aria-hidden="true" />
-                  <span>+1 (555) 123-4567</span>
+                  <span>+92 (370) 429-0725</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
                   <MapPin className="w-4 h-4 text-primary" aria-hidden="true" />
-                  <span>123 Tech Street, Silicon Valley</span>
+                  <span>Block C 1 Phase 1 Johar Town, Lahore,</span>
                 </div>
               </div>
             </div>
@@ -102,17 +120,25 @@ const Footer = () => {
               <p className="text-muted-foreground mb-4">
                 Subscribe to our newsletter for the latest tech insights and company updates.
               </p>
-              <div className="space-y-3">
+              <form onSubmit={handleNewsletterSubscribe} className="space-y-3">
                 <input 
                   type="email" 
                   placeholder="Enter your email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-3 border border-input rounded-lg bg-background text-foreground focus-ring transition-colors duration-200"
                   aria-label="Email address for newsletter subscription"
+                  required
                 />
-                <button className="btn-hero w-full" aria-label="Subscribe to newsletter">
+                <button 
+                  type="submit"
+                  className="btn-hero w-full" 
+                  aria-label="Subscribe to newsletter"
+                  disabled={!email.trim()}
+                >
                   Subscribe
                 </button>
-              </div>
+              </form>
 
               {/* Social Links */}
               <div className="flex space-x-4 mt-6">
@@ -135,7 +161,7 @@ const Footer = () => {
         <div className="py-8 border-t border-border/50">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm text-muted-foreground">
-              © 2024 Eco Fusion. All rights reserved.
+              © 2021 Eco Fusion. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors focus-ring rounded-md px-1 py-1">

@@ -1,6 +1,7 @@
 import { Search, Palette, Code, Rocket, Trophy } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useState } from 'react';
+import { useChatbotContext } from '@/contexts/ChatbotContext';
 
 const HowWeWork = () => {
   const steps = [
@@ -12,6 +13,7 @@ const HowWeWork = () => {
   ];
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const { openChat } = useChatbotContext();
 
   return (
     <section id="how-we-work" className="section-padding section--alternate-2">
@@ -119,7 +121,7 @@ const HowWeWork = () => {
           <p className="text-lg text-muted-foreground mb-6">
             Ready to start your project? Let's begin with a discovery session.
           </p>
-          <button className="btn-hero">Start Your Project</button>
+          <button className="btn-hero" onClick={openChat}>Start Your Project</button>
         </div>
       </div>
     </section>

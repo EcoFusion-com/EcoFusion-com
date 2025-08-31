@@ -185,4 +185,42 @@
   .cyber-accent-bg {
     @apply bg-accent text-accent-foreground;
   }
+
+  /* Chatbot message styling */
+  .chatbot-message strong {
+    @apply font-semibold text-foreground;
+  }
+
+  .chatbot-message em {
+    @apply italic text-foreground/90;
+  }
+
+  .chatbot-message code {
+    @apply bg-muted px-1.5 py-0.5 rounded text-xs font-mono text-foreground;
+  }
+
+  .chatbot-message br {
+    @apply block my-1;
+  }
+
+  .chatbot-message a {
+    @apply text-primary hover:underline transition-colors duration-200;
+  }
+
+  /* Chatbot positioning fixes */
+  .chatbot-widget {
+    transform: none !important;
+    transform-origin: bottom right !important;
+  }
+
+  .chatbot-widget * {
+    transform: none !important;
+  }
+
+  /* Ensure proper text wrapping */
+  .chatbot-message {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
 }

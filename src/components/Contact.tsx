@@ -15,20 +15,20 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Call Us',
-      content: '+1 (555) 123-4567',
+      content: '+92 (370) 429-0725',
       description: 'Mon-Fri from 8am to 6pm'
     },
     {
       icon: MapPin,
       title: 'Visit Us',
-      content: '123 Tech Street, Silicon Valley',
+      content: 'Block C 1 Phase 1 Johar Town, Lahore,',
       description: 'Come say hello at our office'
     },
     {
       icon: Clock,
       title: 'Working Hours',
       content: 'Monday - Friday',
-      description: '8:00 AM - 6:00 PM PST'
+      description: '9:00 AM - 6:00 PM PST'
     }
   ];
 

@@ -1,44 +1,80 @@
-import { Code, Smartphone, Globe, Zap, Shield, Headphones } from 'lucide-react';
+import { Brain, Cpu, Layers, Code, Zap, Shield, Headphones } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 const Services = () => {
   const services = [
     {
-      icon: Code,
-      title: 'Custom Software Development',
-      description: 'Tailored software solutions built from scratch to meet your specific business requirements and goals.',
-      features: ['Full-stack Development', 'API Integration', 'Database Design', 'Testing & QA']
+      icon: Brain,
+      title: 'AI & Automation',
+      description:
+        'Harness the power of Artificial Intelligence to streamline workflows, improve decision-making, and unlock new business opportunities.',
+      features: [
+        'AI Agents & Chatbots',
+        'Predictive Analytics',
+        'Robotic Process Automation (RPA)',
+        'Generative AI Solutions',
+      ],
     },
     {
-      icon: Smartphone,
-      title: 'Mobile App Development',
-      description: 'Native and cross-platform mobile applications for iOS and Android with seamless user experiences.',
-      features: ['iOS & Android', 'React Native', 'Flutter', 'App Store Optimization']
+      icon: Cpu,
+      title: 'IoT Solutions',
+      description:
+        'End-to-end IoT systems for smart homes, industries, and energy optimization — connecting devices to drive intelligence and efficiency.',
+      features: [
+        'Smart Home Systems',
+        'Industrial IoT',
+        'Energy & Resource Monitoring',
+        'IoT Data Dashboards',
+      ],
     },
     {
-      icon: Globe,
-      title: 'Web Development',
-      description: 'Modern, responsive websites and web applications that deliver exceptional performance and user engagement.',
-      features: ['Responsive Design', 'E-commerce', 'CMS Integration', 'SEO Optimization']
+      icon: Layers,
+      title: 'Full-Stack Development',
+      description:
+        'Robust and scalable digital platforms tailored to your business needs — from startups to enterprise-grade applications.',
+      features: [
+        'SaaS Platforms',
+        'Custom Enterprise Apps',
+        'API Development & Integration',
+        'Cloud-native Architectures',
+      ],
     },
     {
       icon: Zap,
       title: 'Cloud Solutions',
-      description: 'Scalable cloud infrastructure and migration services to optimize your business operations and reduce costs.',
-      features: ['AWS & Azure', 'DevOps', 'Microservices', 'Auto-scaling']
+      description:
+        'Scalable, secure, and cost-efficient cloud infrastructure to power your digital transformation.',
+      features: [
+        'AWS, Azure & GCP',
+        'DevOps & CI/CD',
+        'Microservices Architecture',
+        'Auto-scaling Deployments',
+      ],
     },
     {
       icon: Shield,
       title: 'Cybersecurity',
-      description: 'Comprehensive security solutions to protect your digital assets and ensure data privacy compliance.',
-      features: ['Security Audits', 'Penetration Testing', 'Compliance', 'Monitoring']
+      description:
+        'Advanced protection strategies to safeguard your systems, networks, and customer data from modern threats.',
+      features: [
+        'Penetration Testing',
+        'Security Audits',
+        'Data Privacy Compliance',
+        '24/7 Monitoring',
+      ],
     },
     {
       icon: Headphones,
       title: 'Technical Support',
-      description: '24/7 technical support and maintenance services to keep your systems running smoothly and efficiently.',
-      features: ['24/7 Support', 'System Monitoring', 'Updates & Patches', 'Performance Optimization']
-    }
+      description:
+        'Dedicated technical support to keep your business operations running smoothly with minimal downtime.',
+      features: [
+        '24/7 Support',
+        'Proactive Monitoring',
+        'System Updates & Patches',
+        'Performance Optimization',
+      ],
+    },
   ];
 
   return (
@@ -50,11 +86,11 @@ const Services = () => {
             Our Expertise
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Comprehensive <span className="gradient-text">Technology</span> Services
+            Future-Ready <span className="gradient-text">Technology</span> Services
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We offer end-to-end technology solutions to help your business thrive in the digital age. 
-            From strategy to implementation and beyond.
+            We specialize in building intelligent systems that combine AI, IoT, and full-stack solutions.
+            From strategy to implementation, we empower businesses to innovate and scale faster.
           </p>
         </div>
 
@@ -79,8 +115,14 @@ const Services = () => {
                 {/* Features */}
                 <ul className="space-y-2" role="list">
                   {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-sm text-muted-foreground">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3" aria-hidden="true"></div>
+                    <li
+                      key={featureIndex}
+                      className="flex items-center text-sm text-muted-foreground"
+                    >
+                      <div
+                        className="w-1.5 h-1.5 bg-primary rounded-full mr-3"
+                        aria-hidden="true"
+                      ></div>
                       {feature}
                     </li>
                   ))}
@@ -93,7 +135,7 @@ const Services = () => {
         {/* Call to Action */}
         <div className="text-center mt-16">
           <p className="text-lg text-muted-foreground mb-6">
-            Ready to discuss your project? Let's build something amazing together.
+            Ready to innovate with AI, IoT, and full-stack solutions? Let’s create something extraordinary together.
           </p>
           <button className="btn-hero" aria-label="Get free consultation for your project">
             Get Free Consultation

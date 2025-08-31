@@ -65,9 +65,11 @@ import {
   TbWebhook,
   TbPalette
 } from 'react-icons/tb';
+import { useChatbotContext } from '@/contexts/ChatbotContext';
 
 const TechStack = () => {
   const [activeTab, setActiveTab] = useState('languages');
+  const { openChat } = useChatbotContext();
 
   const categories = [
     {
@@ -285,7 +287,7 @@ const TechStack = () => {
           <p className="text-lg text-muted-foreground mb-6">
             Need a specific technology not listed? We're always learning and adapting.
           </p>
-          <button className="btn-hero" aria-label="Discuss your technology needs with our team">
+          <button className="btn-hero" aria-label="Discuss your technology needs with our team" onClick={openChat}>
             Discuss Your Tech Needs
           </button>
         </div>
