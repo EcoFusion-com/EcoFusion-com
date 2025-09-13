@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
 import { useChatbot, ChatMessage } from '@/hooks/useChatbot';
+import { config } from '@/config/environment';
 
 // Context interface
 interface ChatbotContextType {
@@ -27,9 +28,9 @@ const ChatbotContext = createContext<ChatbotContextType | undefined>(undefined);
 
 // Storage keys for UI state
 const UI_STORAGE_KEYS = {
-  IS_OPEN: 'ecofusion_chat_is_open',
-  IS_MINIMIZED: 'ecofusion_chat_is_minimized',
-  MESSAGES: 'ecofusion_chat_messages',
+  IS_OPEN: config.storage.isOpen,
+  IS_MINIMIZED: config.storage.isMinimized,
+  MESSAGES: config.storage.messages,
 };
 
 function rehydrateMessages(): ChatMessage[] {
@@ -113,20 +114,25 @@ export const ChatbotProvider: React.FC<ChatbotProviderProps> = ({
     }
   }, [isOpen, showWelcomeMessage, messages.length, addMessage]);
 
-  // Chat actions
+  // Chat actions - FIXED STATE MANAGEMENT
   const openChat = useCallback(() => {
     setIsOpen(true);
-    setIsMinimized(false);
+    setIsMinimized(false); // Ensure it's not minimized when opening
   }, []);
 
   const closeChat = useCallback(() => {
     setIsOpen(false);
+    // Don't reset isMinimized here to preserve user preference
   }, []);
 
   const toggleChat = useCallback(() => {
-    setIsOpen(prev => !prev);
-    if (!isOpen) {
-      setIsMinimized(false);
+    if (isOpen) {
+      // If currently open, close it
+      setIsOpen(false);
+    } else {
+      // If currently closed, open it and ensure it's not minimized
+      setIsOpen(true);
+      setIsMinimized(false); // FIX: Always reset minimized state when opening
     }
   }, [isOpen]);
 
@@ -164,7 +170,8 @@ export const ChatbotProvider: React.FC<ChatbotProviderProps> = ({
 
 /**
  * Hook to use the chatbot context
- * Must be used within a ChatbotProvider
+ * @returns The chatbot context value
+ * @throws Error if used outside of ChatbotProvider
  */
 export const useChatbotContext = (): ChatbotContextType => {
   const context = useContext(ChatbotContext);
@@ -172,13 +179,4 @@ export const useChatbotContext = (): ChatbotContextType => {
     throw new Error('useChatbotContext must be used within a ChatbotProvider');
   }
   return context;
-};
-
-/**
- * Hook to check if chatbot context is available
- * Useful for conditional rendering
- */
-export const useChatbotAvailable = (): boolean => {
-  const context = useContext(ChatbotContext);
-  return context !== undefined;
 };

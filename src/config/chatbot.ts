@@ -1,38 +1,20 @@
 /**
  * Chatbot Configuration
  * Centralized configuration for the Eco Fusion chatbot
+ * @deprecated Use environment.ts config instead
  */
+
+import { config } from './environment';
 
 export const CHATBOT_CONFIG = {
   // Rasa server configuration
-  rasa: {
-    serverUrl: import.meta.env.VITE_RASA_SERVER_URL || 'http://localhost:5005',
-    webhookUrl: `${import.meta.env.VITE_RASA_SERVER_URL || 'http://localhost:5005'}/webhooks/rest/webhook`,
-    statusUrl: `${import.meta.env.VITE_RASA_SERVER_URL || 'http://localhost:5005'}/status`,
-  },
+  rasa: config.rasa,
   
   // UI configuration
-  ui: {
-    autoOpen: import.meta.env.VITE_CHATBOT_AUTO_OPEN === 'true' || false,
-    showWelcomeMessage: import.meta.env.VITE_CHATBOT_SHOW_WELCOME !== 'false',
-    position: {
-      bottom: '1rem',
-      right: '1rem',
-    },
-    size: {
-      width: '24rem', // 384px
-      height: '31.25rem', // 500px
-      minimizedHeight: '4rem', // 64px
-    },
-  },
+  ui: config.chatbot,
   
   // Storage keys
-  storage: {
-    messages: 'ecofusion_chat_messages',
-    sessionId: 'ecofusion_chat_session_id',
-    isOpen: 'ecofusion_chat_is_open',
-    isMinimized: 'ecofusion_chat_is_minimized',
-  },
+  storage: config.storage,
   
   // Welcome message
   welcomeMessage: {
@@ -48,11 +30,7 @@ export const CHATBOT_CONFIG = {
   },
   
   // Connection settings
-  connection: {
-    timeout: 10000, // 10 seconds
-    retryAttempts: 3,
-    retryDelay: 2000, // 2 seconds
-  },
+  connection: config.connection,
 };
 
 export default CHATBOT_CONFIG;

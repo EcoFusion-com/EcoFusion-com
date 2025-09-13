@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useChatbotContext } from '@/contexts/ChatbotContext';
+import { parseMessageText } from '@/utils/sanitize';
 
 interface ChatbotWidgetProps {
   className?: string;
@@ -81,51 +82,31 @@ export const ChatbotWidget = ({ className }: ChatbotWidgetProps) => {
     return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
-  // Parse markdown-like formatting
-  const parseMessageText = (text: string) => {
-    if (!text) return '';
-    
-    // Convert **text** to bold
-    let parsed = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    
-    // Convert *text* to italic
-    parsed = parsed.replace(/\*(.*?)\*/g, '<em>$1</em>');
-    
-    // Convert `text` to code
-    parsed = parsed.replace(/`(.*?)`/g, '<code>$1</code>');
-    
-    // Convert line breaks to <br>
-    parsed = parsed.replace(/\n/g, '<br />');
-    
-    // Convert URLs to links
-    parsed = parsed.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">$1</a>');
-    
-    return parsed;
-  };
-
-  // Render message component
+  // Render message component - REFACTORED for better overflow handling
   const renderMessage = (message: any) => (
     <div
       key={message.id}
       className={cn(
-        'flex gap-3 mb-4',
+        'flex gap-2 mb-4 items-end', // Reduced gap and added items-end for avatar alignment
         message.sender === 'user' ? 'justify-end' : 'justify-start'
       )}
     >
+      {/* Bot Avatar - Left side */}
       {message.sender === 'bot' && (
         <div className="flex-shrink-0 w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center">
           <Bot className="w-4 h-4 text-white" />
         </div>
       )}
       
-             <div
-         className={cn(
-           'max-w-[80%] rounded-2xl px-4 py-3 break-words overflow-hidden',
-           message.sender === 'user'
-             ? 'bg-primary text-primary-foreground'
-             : 'bg-card border border-border'
-         )}
-       >
+      {/* Message Bubble */}
+      <div
+        className={cn(
+          'max-w-[70%] rounded-2xl px-4 py-3 break-words overflow-hidden', // Reduced max-width to 70%
+          message.sender === 'user'
+            ? 'bg-primary text-primary-foreground'
+            : 'bg-card border border-border'
+        )}
+      >
         {message.isLoading ? (
           <div className="flex items-center gap-2">
             <Loader2 className="w-4 h-4 animate-spin" />
@@ -134,11 +115,11 @@ export const ChatbotWidget = ({ className }: ChatbotWidgetProps) => {
         ) : (
           <>
             <div 
-              className="text-sm leading-relaxed chatbot-message"
+              className="text-sm leading-relaxed chatbot-message break-words"
               dangerouslySetInnerHTML={{ __html: parseMessageText(message.text) }}
             />
             <div className={cn(
-              'text-xs mt-2 opacity-70',
+              'text-xs mt-1 opacity-70', // Reduced margin and improved styling
               message.sender === 'user' ? 'text-primary-foreground' : 'text-muted-foreground'
             )}>
               {formatTime(message.timestamp)}
@@ -147,6 +128,7 @@ export const ChatbotWidget = ({ className }: ChatbotWidgetProps) => {
         )}
       </div>
       
+      {/* User Avatar - Right side */}
       {message.sender === 'user' && (
         <div className="flex-shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center">
           <User className="w-4 h-4 text-white" />
@@ -156,16 +138,28 @@ export const ChatbotWidget = ({ className }: ChatbotWidgetProps) => {
   );
 
   return (
-    <div className={cn("fixed bottom-4 right-4 z-50", className)}>
+    <div className={cn(
+      "fixed bottom-4 right-4 z-50 chatbot-widget", // Added class name for debugging
+      className
+    )}>
       {/* Chat Window */}
       {isOpen && (
         <Card className={cn(
-          'shadow-glow border border-border/50 transition-all duration-300',
+          'shadow-glow border border-border/50 transition-all duration-300 chat-card',
+          // Step 3: Fixed width and height constraints
           'w-[350px] sm:w-96 max-w-[calc(100vw-2rem)]',
           'h-[500px] max-h-[calc(100vh-2rem)]',
-          isMinimized ? 'h-16' : 'h-[500px]'
+          // Step 5: Minimize/Maximize functionality with smooth transitions
+          isMinimized ? 'h-16' : 'h-[500px]',
+          // Step 7: Mobile responsiveness
+          'sm:max-w-[calc(100vw-2rem)] max-w-[calc(100vw-1rem)]',
+          'sm:max-h-[calc(100vh-2rem)] max-h-[calc(100vh-1rem)]',
+          // FIX: Ensure proper positioning and prevent overlap
+          'transform-gpu', // Use GPU acceleration for smoother transitions
+          'will-change-transform' // Optimize for animations
         )}>
-          <CardContent className="p-0 h-full flex flex-col">
+          {/* FIX 1: CardContent with overflow-hidden and box-border */}
+          <CardContent className="p-0 h-full flex flex-col overflow-hidden box-border">
             {/* Header */}
             <div className="flex items-center justify-between p-4 bg-gradient-primary text-white rounded-t-lg">
               <div className="flex items-center gap-2">
@@ -182,7 +176,7 @@ export const ChatbotWidget = ({ className }: ChatbotWidgetProps) => {
                   variant="ghost"
                   size="sm"
                   onClick={toggleMinimize}
-                  className="text-white hover:bg-white/20"
+                  className="text-white hover:bg-white/20 minimize-btn"
                 >
                   {isMinimized ? <Maximize2 className="w-4 h-4" /> : <Minimize2 className="w-4 h-4" />}
                 </Button>
@@ -200,8 +194,10 @@ export const ChatbotWidget = ({ className }: ChatbotWidgetProps) => {
             {/* Messages Area */}
             {!isMinimized && (
               <>
-                <ScrollArea className="flex-1 p-4">
-                  <div className="space-y-4 pr-1">
+                {/* Step 4: ScrollArea with proper constraints */}
+                <ScrollArea className="flex-1 min-w-0 scroll-area max-h-[calc(100vh-150px)]">
+                  {/* FIX 3: Inner content div with box-border */}
+                  <div className="space-y-4 p-4 pr-1 box-border">
                     {messages.map(renderMessage)}
                     {error && (
                       <div className="flex items-center gap-2 p-3 bg-destructive/10 border border-destructive/20 rounded-lg">
@@ -213,43 +209,31 @@ export const ChatbotWidget = ({ className }: ChatbotWidgetProps) => {
                   </div>
                 </ScrollArea>
 
-                {/* Input Area */}
-                <div className="p-4 border-t border-border/50">
-                  <form onSubmit={handleSubmit} className="flex gap-2">
+                {/* Step 6: Input Area with proper alignment */}
+                <div className="p-4 border-t border-border/50 box-border form-container">
+                  <form onSubmit={handleSubmit} className="flex gap-2 justify-between items-center">
                     <Input
                       ref={inputRef}
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
                       onKeyPress={handleKeyPress}
                       placeholder="Type your message..."
-                      className="flex-1"
-                      disabled={isLoading || !isConnected}
+                      disabled={isLoading}
+                      className="flex-1 min-w-0"
                     />
                     <Button
                       type="submit"
                       size="sm"
-                      disabled={!inputValue.trim() || isLoading || !isConnected}
-                      className="bg-primary hover:bg-primary/90"
+                      disabled={!inputValue.trim() || isLoading}
+                      className="shrink-0"
                     >
-                      <Send className="w-4 h-4" />
+                      {isLoading ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <Send className="w-4 h-4" />
+                      )}
                     </Button>
                   </form>
-                  
-                  {/* Connection Status */}
-                  {!isConnected && (
-                    <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
-                      <AlertCircle className="w-3 h-3" />
-                      <span>Chat server unavailable</span>
-                      <Button
-                        variant="link"
-                        size="sm"
-                        onClick={testConnection}
-                        className="text-xs p-0 h-auto"
-                      >
-                        Retry
-                      </Button>
-                    </div>
-                  )}
                 </div>
               </>
             )}
@@ -257,18 +241,16 @@ export const ChatbotWidget = ({ className }: ChatbotWidgetProps) => {
         </Card>
       )}
 
-             {/* Floating Chat Button */}
-       {!isOpen && (
-         <Button
-           onClick={toggleChat}
-           className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-primary hover:bg-gradient-primary shadow-glow hover:shadow-glow/80 transition-all duration-300"
-           aria-label="Open chat"
-         >
-           <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-         </Button>
-       )}
+      {/* Chat Toggle Button */}
+      {!isOpen && (
+        <Button
+          onClick={toggleChat}
+          size="lg"
+          className="w-14 h-14 rounded-full shadow-glow bg-gradient-primary hover:scale-105 transition-transform"
+        >
+          <MessageCircle className="w-6 h-6" />
+        </Button>
+      )}
     </div>
   );
 };
-
-export default ChatbotWidget;

@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
+import { logError, logWarn, logInfo } from '@/services/logger';
 
 // Types
 export interface ChatMessage {
@@ -24,18 +25,13 @@ export interface UseChatbotReturn extends ChatbotState {
   addMessage: (message: ChatMessage) => void;
 }
 
+import { config } from '@/config/environment';
+
 // Configuration
-const RASA_CONFIG = {
-  serverUrl: import.meta.env.VITE_RASA_SERVER_URL || 'http://localhost:5005',
-  webhookUrl: `${import.meta.env.VITE_RASA_SERVER_URL || 'http://localhost:5005'}/webhooks/rest/webhook`,
-  statusUrl: `${import.meta.env.VITE_RASA_SERVER_URL || 'http://localhost:5005'}/status`,
-};
+const RASA_CONFIG = config.rasa;
 
 // Storage keys
-const STORAGE_KEYS = {
-  MESSAGES: 'ecofusion_chat_messages',
-  SESSION_ID: 'ecofusion_chat_session_id',
-};
+const STORAGE_KEYS = config.storage;
 
 // Utility functions
 const generateSessionId = (): string => {
@@ -47,7 +43,7 @@ const loadFromStorage = <T>(key: string, defaultValue: T): T => {
     const stored = localStorage.getItem(key);
     return stored ? JSON.parse(stored) : defaultValue;
   } catch (error) {
-    console.warn(`Failed to load ${key} from storage:`, error);
+    logWarn(`Failed to load ${key} from storage`, { error: error instanceof Error ? error.message : String(error) });
     return defaultValue;
   }
 };
@@ -56,7 +52,7 @@ const saveToStorage = (key: string, value: any): void => {
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch (error) {
-    console.warn(`Failed to save ${key} to storage:`, error);
+    logWarn(`Failed to save ${key} to storage`, { error: error instanceof Error ? error.message : String(error) });
   }
 };
 
@@ -67,25 +63,23 @@ const saveToStorage = (key: string, value: any): void => {
 export const useChatbot = (): UseChatbotReturn => {
   // State
   const [messages, setMessages] = useState<ChatMessage[]>(() => 
-    loadFromStorage(STORAGE_KEYS.MESSAGES, [])
+    loadFromStorage(STORAGE_KEYS.messages, [])
   );
   const [isConnected, setIsConnected] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   
   // Refs
-  const sessionIdRef = useRef<string>(() => 
-    loadFromStorage(STORAGE_KEYS.SESSION_ID, generateSessionId())
-  );
+  const sessionIdRef = useRef<string>(loadFromStorage(STORAGE_KEYS.sessionId, generateSessionId()));
 
   // Persist messages to localStorage
   useEffect(() => {
-    saveToStorage(STORAGE_KEYS.MESSAGES, messages);
+    saveToStorage(STORAGE_KEYS.messages, messages);
   }, [messages]);
 
   // Persist session ID to localStorage
   useEffect(() => {
-    saveToStorage(STORAGE_KEYS.SESSION_ID, sessionIdRef.current);
+    saveToStorage(STORAGE_KEYS.sessionId, sessionIdRef.current);
   }, []);
 
   /**
@@ -103,13 +97,16 @@ export const useChatbot = (): UseChatbotReturn => {
       if (response.ok) {
         setIsConnected(true);
         setError(null);
+        logInfo('Chatbot connection established');
       } else {
         setIsConnected(false);
         setError('Unable to connect to chat server');
+        logWarn('Chatbot connection failed', { status: response.status });
       }
     } catch (err) {
       setIsConnected(false);
       setError('Chat server is currently unavailable');
+      logError('Chatbot connection error', err instanceof Error ? err : new Error(String(err)));
     }
   }, []);
 
@@ -186,7 +183,10 @@ export const useChatbot = (): UseChatbotReturn => {
       }
 
     } catch (err) {
-      console.error('Error sending message to Rasa:', err);
+      logError('Error sending message to Rasa', err instanceof Error ? err : new Error(String(err)), {
+        message: text,
+        sessionId: sessionIdRef.current
+      });
       setError('Failed to send message. Please try again.');
       
       // Remove loading message and add error message
@@ -211,7 +211,7 @@ export const useChatbot = (): UseChatbotReturn => {
   const clearChat = useCallback(() => {
     setMessages([]);
     sessionIdRef.current = generateSessionId();
-    saveToStorage(STORAGE_KEYS.SESSION_ID, sessionIdRef.current);
+    saveToStorage(STORAGE_KEYS.sessionId, sessionIdRef.current);
   }, []);
 
   /**
